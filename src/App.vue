@@ -1,17 +1,21 @@
 <template>
 	<v-app dark>
-		<v-toolbar class="toolbar" app color="#243447" absolute>
+		<v-toolbar class="toolbar" app color="#243447" fixed :flat="!showToolbarShadow" :class="{'toolbar-border': !showToolbarShadow}">
 
-			<v-toolbar-title class="text-uppercase">
+			<v-toolbar-side-icon></v-toolbar-side-icon>
+
+			<v-toolbar-title>
 				<span class="font-weight-light">Fietsenstalling</span>
-
 			</v-toolbar-title>
 
 			<v-spacer></v-spacer>
 
-			<!-- <v-btn flat href="https://github.com/vuetifyjs/vuetify/releases/latest" target="_blank">
-				<span>Latest Release</span>
-			</v-btn> -->
+			<v-btn icon>
+				<v-icon>refresh</v-icon>
+			</v-btn>
+			<v-btn icon>
+				<v-icon>add</v-icon>
+			</v-btn>
 
 		</v-toolbar>
 
@@ -41,7 +45,7 @@ export default {
 	},
 	computed: {
 		showToolbarShadow() {
-			return this.distanceFromTop > 100;
+			return this.distanceFromTop > 0;
 		}
 	},
 	methods: {
@@ -53,6 +57,8 @@ export default {
 </script>
 
 <style>
-
+.toolbar-border {
+	border-bottom: 1px solid hsla(211, 33%, 16%, 0.5) !important;
+}
 </style>
 
