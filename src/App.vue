@@ -1,38 +1,55 @@
 <template>
-  <v-app>
-    <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-toolbar>
+	<v-app dark>
+		<v-toolbar class="toolbar" app color="#243447" absolute>
 
-    <v-content>
-      <HelloWorld/>
-    </v-content>
-  </v-app>
+			<v-toolbar-title class="text-uppercase">
+				<span class="font-weight-light">Fietsenstalling</span>
+
+			</v-toolbar-title>
+
+			<v-spacer></v-spacer>
+
+			<!-- <v-btn flat href="https://github.com/vuetifyjs/vuetify/releases/latest" target="_blank">
+				<span>Latest Release</span>
+			</v-btn> -->
+
+		</v-toolbar>
+
+		<v-content v-scroll="showShadowOnScroll">
+			
+			<router-view/>
+
+		</v-content>
+	</v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  },
-  data () {
-    return {
-      //
-    }
-  }
-}
+	name: "App",
+	components: {
+		
+	},
+	data() {
+		return {
+			distanceFromTop: null	
+		}
+	},
+	computed: {
+		showToolbarShadow() {
+			return this.distanceFromTop > 100;
+		}
+	},
+	methods: {
+		showShadowOnScroll(e) {
+			this.distanceFromTop = window.pageYOffset || document.documentElement.scrollTop;
+		}
+	}
+};
 </script>
+
+<style>
+.toolbar {
+	border-bottom: 
+}
+</style>
+
