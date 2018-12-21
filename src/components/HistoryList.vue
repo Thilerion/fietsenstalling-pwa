@@ -3,7 +3,7 @@
       row
     >
       <v-flex xs12>
-        <v-list three-line>
+        <v-list three-line :style="{'background-color': '#1b2836'}">
 			<v-subheader>Meest recent</v-subheader>
 			<v-divider/>
 			<v-list-tile @click="selectTile" ripple>

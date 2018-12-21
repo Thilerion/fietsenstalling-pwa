@@ -1,5 +1,5 @@
 <template>
-	<v-app dark>
+	<v-app dark :style="{'background-color': '#1b2836'}">
 		<toolbar :showToolbarShadow="showToolbarShadow">
 			<template slot="buttons">
 				
