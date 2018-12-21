@@ -20,14 +20,19 @@
 			<router-view/>
 
 		</v-content>
+
+		<!-- WIP bottom action bar -->
+		<bottom-action-bar v-if="false" />
 	</v-app>
 </template>
 
 <script>
+import BottomActionBar from './components/BottomActionBar';
+
 export default {
 	name: "App",
 	components: {
-		
+		BottomActionBar
 	},
 	data() {
 		return {
@@ -48,8 +53,6 @@ export default {
 </script>
 
 <style>
-.toolbar {
-	border-bottom: 
-}
+
 </style>
 

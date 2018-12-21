@@ -1,8 +1,10 @@
 import Vue from 'vue'
-import Vuetify from 'vuetify/lib'
+// import Vuetify from 'vuetify/lib'
+import Vuetify from 'vuetify'
+import { Scroll } from 'vuetify/lib/directives';
+
 import 'vuetify/src/stylus/app.styl'
 
-import { Scroll } from 'vuetify/lib/directives';
 
 Vue.use(Vuetify, {
 	iconfont: 'md',
