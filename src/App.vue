@@ -13,7 +13,7 @@
 			<v-btn icon>
 				<v-icon>refresh</v-icon>
 			</v-btn>
-			<v-btn icon>
+			<v-btn icon to="/add">
 				<v-icon>add</v-icon>
 			</v-btn>
 
@@ -21,7 +21,9 @@
 
 		<v-content v-scroll="showShadowOnScroll">
 			
+			<v-slide-y-transition mode="out-in">
 			<router-view/>
+			</v-slide-y-transition>
 
 		</v-content>
 
