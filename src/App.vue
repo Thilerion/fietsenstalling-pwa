@@ -1,23 +1,11 @@
 <template>
 	<v-app dark>
-		<v-toolbar class="toolbar" app color="#243447" fixed :flat="!showToolbarShadow" :class="{'toolbar-border': !showToolbarShadow}">
+		<toolbar :showToolbarShadow="showToolbarShadow">
+			<template slot="buttons">
+				
+			</template>
 
-			<v-toolbar-side-icon></v-toolbar-side-icon>
-
-			<v-toolbar-title>
-				<span class="font-weight-light">Fietsenstalling</span>
-			</v-toolbar-title>
-
-			<v-spacer></v-spacer>
-
-			<v-btn icon>
-				<v-icon>refresh</v-icon>
-			</v-btn>
-			<v-btn icon to="/add">
-				<v-icon>add</v-icon>
-			</v-btn>
-
-		</v-toolbar>
+		</toolbar>
 
 		<v-content v-scroll="showShadowOnScroll">
 			
@@ -34,11 +22,13 @@
 
 <script>
 import BottomActionBar from './components/BottomActionBar';
+import Toolbar from './components/toolbars/Toolbar';
 
 export default {
 	name: "App",
 	components: {
-		BottomActionBar
+		BottomActionBar,
+		Toolbar
 	},
 	data() {
 		return {
