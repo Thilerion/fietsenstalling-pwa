@@ -41,8 +41,33 @@
 				/>
 			</v-menu>
 			<h2 class="title font-weight-regular">Tags</h2>
-			<h3 class="subheading font-weight-light">Rij</h3>
-			<p>ABC DEF GHI JKL</p>
+			<div
+				column
+				v-for="(cat, catName) in tagsByCategory"
+				:key="catName"
+			>
+				<h3 class="subheading font-weight-light">{{catName}}</h3>
+				<v-layout row wrap>
+					<v-checkbox
+						v-model="chosenTags"
+						v-for="tag in cat"
+						:key="tag.id"
+						:value="tag.name"
+						:label="String(tag.name)"
+						height="0"
+					></v-checkbox>
+				</v-layout>
+				<!-- 
+				<v-flex xs-12>
+					<v-checkbox
+						v-model="chosenTags"
+						v-for="tag in tagsInCategory(cat.name)"
+						:key="tag.id"
+						:value="tag.name"
+						:label="String(tag.name)"
+					></v-checkbox>
+				</v-flex> -->
+			</div>
 		</v-flex>
 	</v-layout>
 	</v-container>
@@ -59,9 +84,20 @@ export default {
 	},
 	computed: {
 		allTags() {
-			//return this.$store.getters.tagNames;
-			// todo: store getter
-			return [];
+			return this.$store.state.tags;
+		},
+		tagCategories() {
+			return this.$store.state.tagCategories;
+		},
+		tagsByCategory() {
+			return this.allTags.reduce((list, tag) => {
+				if (list[tag.category]) {
+					list[tag.category].push(tag);
+				} else {
+					list[tag.category] = [tag];
+				}
+				return list;
+			}, {});
 		}
 	},
 	beforeRouteLeave(to, from, next) {
