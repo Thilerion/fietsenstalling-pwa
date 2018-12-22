@@ -40,23 +40,26 @@
 					color="#243447"
 				/>
 			</v-menu>
-			<h2 class="title font-weight-regular">Tags</h2>
+			<h2 class="title font-weight-regular mt-1 mb-3">Tags</h2>
 			<div
 				column
 				v-for="(cat, catName) in tagsByCategory"
 				:key="catName"
 			>
-				<h3 class="subheading font-weight-light">{{catName}}</h3>
-				<v-layout row wrap>
+				<h3 class="tag-title subheader font-weight-light text-capitalize my-2">{{catName}}</h3>
+				<v-divider/>
+				<div class="checkbox-wrapper py-1">
 					<v-checkbox
+						class="checkbox py-1 my-1"
 						v-model="chosenTags"
 						v-for="tag in cat"
 						:key="tag.id"
 						:value="tag.name"
 						:label="String(tag.name)"
-						height="0"
+						hide-details
+						:ripple="false"
 					></v-checkbox>
-				</v-layout>
+				</div>
 				<!-- 
 				<v-flex xs-12>
 					<v-checkbox
@@ -100,6 +103,9 @@ export default {
 			}, {});
 		}
 	},
+	beforeMount() {
+		this.$vuetify.goTo(0);
+	},
 	beforeRouteLeave(to, from, next) {
 		console.log("WOAH");
 		next();
@@ -108,5 +114,24 @@ export default {
 </script>
 
 <style scoped>
+.checkbox-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
 
+.checkbox {
+	flex: 0 0 auto;
+	/* margin: 0; */
+	/* padding: 0; */
+}
+
+.checkbox:not(:last-child) {
+	padding-right: 1em;
+}
+
+.tag-title {
+	opacity: 0.9;
+}
 </style>
