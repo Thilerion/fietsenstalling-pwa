@@ -59,7 +59,9 @@ export default {
 	},
 	computed: {
 		allTags() {
-			return this.$store.getters.tagNames;
+			//return this.$store.getters.tagNames;
+			// todo: store getter
+			return [];
 		}
 	},
 	beforeRouteLeave(to, from, next) {
