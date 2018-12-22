@@ -23,7 +23,13 @@ export default new Vuex.Store({
 			'other'
 		],
 		tags: {
-
+			"0": {
+				id: 0,
+				name: "tagTest",
+				tagType: 'color',
+				primaryColor: 'white',
+				textColor: 'green'
+			}
 		},
 		items: [
 
@@ -31,7 +37,8 @@ export default new Vuex.Store({
 	},
 	getters: {
 		tagIds: state => Object.keys(state.tags).map(id => parseInt(id)).sort((a, b) => a - b),
-		lastTagId: (_, getters) => getters.tagIds[getters.tagIds.length - 1]
+		lastTagId: (_, getters) => getters.tagIds[getters.tagIds.length - 1],
+		tagNames: state => Object.values(state.tags).map(tag => tag.name)
 	},
 	mutations: {
 		pushTag(state, tag) {

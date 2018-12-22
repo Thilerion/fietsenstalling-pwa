@@ -40,7 +40,9 @@
 					color="#243447"
 				/>
 			</v-menu>
-			<v-subheader :style="{'padding-left': 0}">Tags</v-subheader>
+			<h2 class="title font-weight-regular">Tags</h2>
+			<h3 class="subheading font-weight-light">Rij</h3>
+			<p>ABC DEF GHI JKL</p>
 		</v-flex>
 	</v-layout>
 	</v-container>
@@ -51,21 +53,18 @@ export default {
 	data() {
 		return {
 			date: new Date().toISOString().substr(0, 10),
-			time: `${new Date().getHours()}:${new Date().getMinutes()}`,
-			tags: []
+			time: `${new Date().getHours()}:${('00' + new Date().getMinutes()).slice(-2)}`,
+			chosenTags: []
 		}
 	},
-	beforeMount() {
-		const date = new Date();
-		this.day = date.getDate();
-		this.month = date.getMonth() + 1;
-		this.year = date.getFullYear();
-		this.hour = date.getHours();
-		this.minute = date.getMinutes();
+	computed: {
+		allTags() {
+			return this.$store.getters.tagNames;
+		}
 	},
 	beforeRouteLeave(to, from, next) {
 		console.log("WOAH");
-		next(false);
+		next();
 	}
 }
 </script>
