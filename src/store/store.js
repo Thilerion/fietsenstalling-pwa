@@ -58,6 +58,10 @@ const store = new Vuex.Store({
 	},
 	getters: {
 		tagsById: state => [...state.tags].sort((a, b) => a.id - b.id),
+		tagIds: state => state.tags.reduce((ids, tag) => {
+			ids.push(tag.id);
+			return ids;
+		}, []),
 		nextTagId(_, getters) {
 			const tagsById = getters.tagsById;
 			const lastTag = tagsById[tagsById.length - 1].id;
@@ -68,6 +72,9 @@ const store = new Vuex.Store({
 	mutations: {
 		pushNewTag(state, tag) {
 			state.tags.push(tag);
+		},
+		pushItem(state, item) {
+			state.items.push(item);
 		}
 	},
 	actions: {
@@ -75,7 +82,7 @@ const store = new Vuex.Store({
 			const tag = { name, color, category, id: getters.nextTagId };
 			commit('pushNewTag', tag);
 		},
-		addNewItem({ getters, commit }, {date = Date.now(), tagIds = []}) {
+		addNewItem({ getters, commit }, {timestamp = Date.now().valueOf(), tagIds = []}) {
 			for (const tag of tagIds) {
 				if (!getters.tagIds.includes(tag)) {
 					throw new Error("This tag does not exist!");
@@ -83,7 +90,7 @@ const store = new Vuex.Store({
 			}
 
 			const item = {
-				date,
+				timestamp,
 				tagIds
 			}
 

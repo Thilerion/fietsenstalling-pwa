@@ -54,7 +54,7 @@
 						v-model="chosenTags"
 						v-for="tag in cat"
 						:key="tag.id"
-						:value="tag.name"
+						:value="tag.id"
 						:label="String(tag.name)"
 						hide-details
 						:ripple="false"
@@ -103,11 +103,21 @@ export default {
 			}, {});
 		}
 	},
+	methods: {
+		parseTimeForExport() {
+			return new Date(`${this.date} ${this.time}`).valueOf();
+		},
+		saveEntryToStore() {
+			const timestamp = this.parseTimeForExport();
+			const tagIds = [...this.chosenTags];
+			this.$store.dispatch('addNewItem', {timestamp, tagIds});
+		}
+	},
 	beforeMount() {
 		this.$vuetify.goTo(0);
 	},
 	beforeRouteLeave(to, from, next) {
-		console.log("WOAH");
+		this.saveEntryToStore();
 		next();
 	}
 }
@@ -123,8 +133,7 @@ export default {
 
 .checkbox {
 	flex: 0 0 auto;
-	/* margin: 0; */
-	/* padding: 0; */
+	min-width: 4.5rem;
 }
 
 .checkbox:not(:last-child) {
