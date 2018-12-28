@@ -14,13 +14,8 @@
 			</v-list-tile>
 			<v-subheader>Eerder</v-subheader>
 			<v-divider/>
-			<template v-for="n in 50">
-				<v-list-tile :key="n" @click="selectTile" ripple>
-					<v-list-tile-content>
-						<v-list-tile-title>Title</v-list-tile-title>
-						<tag>Tag test</tag>
-					</v-list-tile-content>
-				</v-list-tile>
+			<template v-for="(item, index) in items">
+				<history-entry :key="index" :item="item" />
 			</template>
         </v-list>
       </v-flex>
@@ -29,10 +24,17 @@
 
 <script>
 import Tag from './Tag.vue';
+import HistoryEntry from './HistoryEntry.vue';
 
 export default {
 	components: {
-		Tag
+		Tag,
+		HistoryEntry
+	},
+	computed: {
+		items() {
+			return this.$store.state.items;
+		}
 	},
 	methods: {
 		selectTile(e) {

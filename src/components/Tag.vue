@@ -4,8 +4,8 @@
 		:close="editable"
 		:outline="!isColor"
 		:disabled="!editable"
-		:color="isColor ? 'primary' : null"
-		:text-color="isColor ? 'white' : null"
+		:color="chipColor"
+		:text-color="chipTextColor"
 	>
 		<slot/>
 	</v-chip>
@@ -17,11 +17,26 @@ export default {
 		editable: {
 			type: Boolean,
 			default: false
+		},
+		isColor: {
+			type: Boolean,
+			default: false
+		},
+		color: {
+			type: String,
+			default: 'primary'
 		}
 	},
 	computed: {
-		isColor() {
-			return false;
+		chipColor() {
+			if (!this.isColor) return;
+
+			return this.color;
+		},
+		chipTextColor() {
+			if (this.isColor) return;
+
+			return this.color;
 		}
 	}
 }
