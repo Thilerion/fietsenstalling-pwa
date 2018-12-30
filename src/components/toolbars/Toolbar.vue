@@ -20,7 +20,7 @@
 		<v-icon>add</v-icon>
 	</v-btn>
 
-	<v-btn v-if="isAddPage" icon>
+	<v-btn v-if="isAddPage" icon to="/">
 		<v-icon>done</v-icon>
 	</v-btn>
 

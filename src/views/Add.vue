@@ -29,8 +29,7 @@
 					label="Tijd"
 					prepend-icon="access_time"
 					readonly
-					dark
-					
+					dark					
 				/>
 				<v-time-picker
 					v-model="time"
