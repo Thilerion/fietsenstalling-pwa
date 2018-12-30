@@ -6,15 +6,15 @@
         <v-list three-line :style="{'background-color': '#1b2836'}">
 			<v-subheader>Meest recent</v-subheader>
 			<v-divider/>
-			<v-list-tile @click="selectTile" ripple>
+			<history-entry v-if="mostRecentItem" :item="mostRecentItem" />
+			<v-list-tile @click="selectTile" v-else ripple>
 				<v-list-tile-content>
-					<v-list-tile-title>Laatste keer</v-list-tile-title>
-					<v-list-tile-sub-title>Subtitle meest recent</v-list-tile-sub-title>
+					<v-list-tile-title>Nog niets!</v-list-tile-title>
 				</v-list-tile-content>
 			</v-list-tile>
-			<v-subheader>Eerder</v-subheader>
-			<v-divider/>
-			<template v-for="(item, index) in items">
+			<v-subheader v-if="pastItems">Eerder</v-subheader>
+			<v-divider v-if="pastItems" />
+			<template v-if="pastItems" v-for="(item, index) in pastItems">
 				<history-entry :key="index" :item="item" />
 			</template>
         </v-list>
@@ -33,7 +33,15 @@ export default {
 	},
 	computed: {
 		items() {
-			return this.$store.state.items;
+			return [...this.$store.state.items].sort((a, b) => {
+				return b.timestamp - a.timestamp;
+			});
+		},
+		mostRecentItem() {
+			if (this.items.length > 0) return this.items[0];
+		},
+		pastItems() {
+			if (this.items.length > 1) return this.items.slice(1);
 		}
 	},
 	methods: {
