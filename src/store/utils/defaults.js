@@ -60,7 +60,7 @@ function createTags(names, category, lastId) {
 	const tags = [];
 
 	for (let i = 0, id = lastId; i < names.length; i++, id++) {
-		const tag = new Tag(name, category, null);
+		const tag = new Tag(names[i], category, null);
 		tag.id = id;
 		tags.push(tag);
 	}

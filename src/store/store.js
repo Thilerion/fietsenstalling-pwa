@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { Tag, Item } from './utils/factory';
-import { baseCategories, baseTags, baseItems } from './utils/defaults';
+import loadFromStorage from './utils/localStorage';
 
 Vue.use(Vuex);
 
@@ -56,6 +56,6 @@ const store = new Vuex.Store({
 	}
 })
 
-store.replaceState({ tagCategories: baseCategories, tags: baseTags, items: baseItems });
+store.replaceState(loadFromStorage());
 
 export default store;
