@@ -14,25 +14,25 @@ const store = new Vuex.Store({
 			},
 			{
 				name: "path",
-				color: "#FF0000",
+				color: "#f0a8a8",
 				order: 1,
 				showText: true
 			},
 			{
 				name: "column",
-				color: "#00FF00",
+				color: "#a3f5a3",
 				order: 2,
 				showText: true
 			},
 			{
 				name: "direction",
-				color: "#0000FF",
+				color: "#b6b6fb",
 				order: 3,
 				showText: true
 			},
 			{
 				name: "other",
-				color: "#FF00FF",
+				color: "#f2d9f2",
 				order: 4,
 				showText: true
 			}

@@ -9,7 +9,7 @@
 	>
 		<slot/>
 	</v-chip> -->
-	<div class="tag mr-1 caption" :class="tagClasses">
+	<div class="tag mr-1 caption font-weight-bold" :class="tagClasses" :style="tagStyle">
 		<slot v-if="showText" />
 	</div>
 </template>
@@ -18,10 +18,6 @@
 export default {
 	props: {
 		editable: {
-			type: Boolean,
-			default: false
-		},
-		isColor: {
 			type: Boolean,
 			default: false
 		},
@@ -35,16 +31,6 @@ export default {
 		}
 	},
 	computed: {
-		chipColor() {
-			if (!this.isColor) return;
-
-			return this.color;
-		},
-		chipTextColor() {
-			if (this.isColor) return;
-
-			return this.color;
-		},
 		tagClasses() {
 			const classes = [];
 			
@@ -55,6 +41,18 @@ export default {
 			}
 
 			return classes;
+		},
+		tagStyle() {
+			const styles = {};
+
+			if (this.showText) {
+				styles['border-color'] = this.color;
+				styles['color'] = this.color;
+			} else {
+				styles['border-color'] = this.color;
+				styles['background-color'] = this.color;
+			}
+			return styles;
 		}
 	}
 }

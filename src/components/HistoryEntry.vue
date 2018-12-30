@@ -4,7 +4,7 @@
 			<v-list-tile-title>{{date}} <span class="time">{{time}}</span></v-list-tile-title>
 			<v-list-tile-sub-title>
 				<span class="tags">
-					<tag v-for="tag in tags" :key="tag.id" :color="tag.color" :isColor="false" :showText="categoryForTag(tag.category).showText">{{tag.name}}</tag>
+					<tag v-for="tag in tags" :key="tag.id" :color="colors(tag)" :showText="categoryForTag(tag.category).showText">{{tag.name}}</tag>
 				</span>
 			</v-list-tile-sub-title>
 		</v-list-tile-content>
@@ -41,6 +41,13 @@ export default {
 	methods: {
 		categoryForTag(name) {
 			return this.categories.find(cat => cat.name === name);
+		},
+		colors(tag) {
+			if (tag.color) return tag.color;
+			
+			const category = this.categoryForTag(tag.category);
+
+			return category.color;
 		}
 	},
 	created() {
