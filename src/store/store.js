@@ -38,6 +38,9 @@ const store = new Vuex.Store({
 		},
 		pushItem(state, item) {
 			state.items.push(item);
+		},
+		spliceItem(state, idx) {
+			state.items.splice(idx, 1);
 		}
 	},
 	actions: {
@@ -53,6 +56,14 @@ const store = new Vuex.Store({
 			}
 
 			commit('pushItem', new Item(tagIds, timestamp));
+		},
+		deleteItem({ state, commit }, id) {
+			const idx = state.items.findIndex(item => item.id === id);
+			if (idx != null) {
+				commit('spliceItem', idx);
+			} else {
+				console.log(id);
+			}
 		}
 	}
 })

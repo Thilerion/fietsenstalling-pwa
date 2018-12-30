@@ -6,7 +6,9 @@
         <v-list three-line :style="{'background-color': '#1b2836'}">
 			<v-subheader>Meest recent</v-subheader>
 			<v-divider/>
+			<!-- <transition :key="mostRecentItem.timestamp" name="fade-item"> -->
 			<history-entry v-if="mostRecentItem" :item="mostRecentItem" />
+			<!-- </transition> -->
 			<v-list-tile @click="selectTile" v-else ripple>
 				<v-list-tile-content>
 					<v-list-tile-title>Nog niets!</v-list-tile-title>

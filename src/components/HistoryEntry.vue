@@ -1,5 +1,5 @@
 <template>
-	<v-list-tile @click="$emit('selectTile')" ripple>
+	<v-list-tile>
 		<v-list-tile-content>
 			<v-list-tile-title>{{date}} <span class="time">{{time}}</span></v-list-tile-title>
 			<v-list-tile-sub-title>
@@ -8,6 +8,11 @@
 				</span>
 			</v-list-tile-sub-title>
 		</v-list-tile-content>
+		<v-list-tile-action>
+			<v-btn icon ripple @click="deleteItem">
+				<v-icon class="del-icon">close</v-icon>
+			</v-btn>
+		</v-list-tile-action>
 	</v-list-tile>
 </template>
 
@@ -48,6 +53,9 @@ export default {
 			const category = this.categoryForTag(tag.category);
 
 			return category.color;
+		},
+		deleteItem() {
+			this.$store.dispatch('deleteItem', this.item.id);
 		}
 	},
 	created() {
@@ -74,5 +82,9 @@ export default {
 .tags {
 	display: inline-flex;
 	flex-wrap: wrap;
+}
+
+.del-icon {
+	opacity: 0.4;
 }
 </style>

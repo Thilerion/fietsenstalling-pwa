@@ -18,5 +18,6 @@ export class Item {
 	constructor(tags = [], timestamp = Date.now().valueOf()) {
 		this.tagIds = [...tags];
 		this.timestamp = timestamp;
+		this.id = `${timestamp / 1000}-${Math.floor(Math.random() * 10000)}`;
 	}
 }

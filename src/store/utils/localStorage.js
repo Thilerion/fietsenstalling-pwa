@@ -1,4 +1,5 @@
 import { baseCategories, baseTags, baseItems } from './defaults';
+import { Item } from './factory';
 
 function loadFromStorage() {
 	const tagCategories = localStorage.getItem('tagCategories');
@@ -10,10 +11,12 @@ function loadFromStorage() {
 		return { tagCategories: baseCategories, tags: baseTags, items: baseItems };
 	}
 
-	else return {
+	const parsedItems = JSON.parse(items).map(item => new Item(item.tagIds, item.timestamp));
+
+	return {
 		tagCategories: JSON.parse(tagCategories),
 		tags: JSON.parse(tags),
-		items: JSON.parse(items)
+		items: parsedItems
 	};
 }
 
