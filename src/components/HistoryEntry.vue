@@ -1,7 +1,7 @@
 <template>
 	<v-list-tile @click="$emit('selectTile')" ripple>
 		<v-list-tile-content>
-			<v-list-tile-title>{{date}}</v-list-tile-title>
+			<v-list-tile-title>{{date}} <span class="time">{{time}}</span></v-list-tile-title>
 			<v-list-tile-sub-title>
 				<tag v-for="tag in tags" :key="tag.id" :color="tag.color" :isColor="false">{{tag.name}}</tag>
 			</v-list-tile-sub-title>
@@ -19,7 +19,8 @@ export default {
 	},
 	data() {
 		return {
-			date: null
+			date: null,
+			time: null
 		}
 	},
 	computed: {
@@ -36,15 +37,21 @@ export default {
 		this.date = new Date(this.item.timestamp).toLocaleString('nl-nl', {
 			weekday: "long",
 			year: "numeric",
-			month: "numeric",
-			day: "numeric",
-			hour: "2-digit",
-			minute: "2-digit"
+			month: "long",
+			day: "numeric"
+		});
+		this.time = new Date(this.item.timestamp).toLocaleTimeString('nl-nl', {
+			hour: '2-digit',
+			minute: '2-digit'
 		});
 	}
 }
 </script>
 
 <style scoped>
-
+.time {
+	opacity: 0.7;
+	font-size: 0.875em;
+	
+}
 </style>
