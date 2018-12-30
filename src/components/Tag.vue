@@ -1,5 +1,5 @@
 <template>
-	<v-chip 
+	<!-- <v-chip 
 		:small="!editable"
 		:close="editable"
 		:outline="!isColor"
@@ -8,7 +8,10 @@
 		:text-color="chipTextColor"
 	>
 		<slot/>
-	</v-chip>
+	</v-chip> -->
+	<div class="tag mr-1 caption" :class="tagClasses">
+		<slot v-if="showText" />
+	</div>
 </template>
 
 <script>
@@ -25,6 +28,10 @@ export default {
 		color: {
 			type: String,
 			default: 'primary'
+		},
+		showText: {
+			type: Boolean,
+			default: true
 		}
 	},
 	computed: {
@@ -37,11 +44,40 @@ export default {
 			if (this.isColor) return;
 
 			return this.color;
+		},
+		tagClasses() {
+			const classes = [];
+			
+			if (!this.showText) {
+				classes.push('round');
+			} else {
+				classes.push('wide');
+			}
+
+			return classes;
 		}
 	}
 }
 </script>
 
-<style>
+<style scoped>
+.tag {
+	height: 1.5em;
+	border: 1px solid white;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0.75em;
+}
 
+.round {
+	border-radius: 50%;
+	width: 1.5em;	
+}
+
+.wide {
+	border-radius: 10px;
+	min-width: 1.5em;
+	width: auto;
+}
 </style>

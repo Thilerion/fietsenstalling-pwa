@@ -9,27 +9,32 @@ const store = new Vuex.Store({
 			{
 				name: "label",
 				color: "#FFFFFF",
-				order: 0
+				order: 0,
+				showText: false
 			},
 			{
 				name: "path",
 				color: "#FF0000",
-				order: 1
+				order: 1,
+				showText: true
 			},
 			{
 				name: "column",
 				color: "#00FF00",
-				order: 2
+				order: 2,
+				showText: true
 			},
 			{
 				name: "direction",
 				color: "#0000FF",
-				order: 3
+				order: 3,
+				showText: true
 			},
 			{
 				name: "other",
 				color: "#FF00FF",
-				order: 4
+				order: 4,
+				showText: true
 			}
 		],
 		tags: [

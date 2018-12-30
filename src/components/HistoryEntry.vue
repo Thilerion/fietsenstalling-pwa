@@ -3,7 +3,9 @@
 		<v-list-tile-content>
 			<v-list-tile-title>{{date}} <span class="time">{{time}}</span></v-list-tile-title>
 			<v-list-tile-sub-title>
-				<tag v-for="tag in tags" :key="tag.id" :color="tag.color" :isColor="false">{{tag.name}}</tag>
+				<span class="tags">
+					<tag v-for="tag in tags" :key="tag.id" :color="tag.color" :isColor="false" :showText="categoryForTag(tag.category).showText">{{tag.name}}</tag>
+				</span>
 			</v-list-tile-sub-title>
 		</v-list-tile-content>
 	</v-list-tile>
@@ -31,6 +33,14 @@ export default {
 			return this.$store.getters.tagsById.filter(val => {
 				return this.tagIds.includes(val.id);
 			})
+		},
+		categories() {
+			return this.$store.state.tagCategories;
+		}
+	},
+	methods: {
+		categoryForTag(name) {
+			return this.categories.find(cat => cat.name === name);
 		}
 	},
 	created() {
@@ -52,6 +62,10 @@ export default {
 .time {
 	opacity: 0.7;
 	font-size: 0.875em;
-	
+}
+
+.tags {
+	display: inline-flex;
+	flex-wrap: wrap;
 }
 </style>
