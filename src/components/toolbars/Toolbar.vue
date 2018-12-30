@@ -13,7 +13,7 @@
 
 	<v-spacer></v-spacer>
 
-	<v-btn v-if="isMainPage" icon>
+	<v-btn v-if="isMainPage" icon @click="reload">
 		<v-icon>refresh</v-icon>
 	</v-btn>
 	<v-btn v-if="isMainPage" icon to="/add">
@@ -46,6 +46,11 @@ export default {
 			} else if (this.isMainPage) {
 				return "Fietsenstalling";
 			}
+		}
+	},
+	methods: {
+		reload() {
+			window.location.reload(true);
 		}
 	}
 }
