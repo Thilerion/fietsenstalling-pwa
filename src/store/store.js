@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { Tag, Item } from './utils/factory';
 
 Vue.use(Vuex);
 
@@ -94,23 +95,14 @@ const store = new Vuex.Store({
 				}
 			}
 
-			const item = {
-				timestamp,
-				tagIds
-			}
-
-			commit('pushItem', item);
+			commit('pushItem', new Item(tagIds, timestamp));
 		}
 	}
 })
 
 function createTags(names, category) {
 	const tags = [];
-	names.forEach(name => tags.push({
-		category,
-		color: null,
-		name
-	}));
+	names.forEach(name => tags.push(new Tag(name, category, null)));
 	return tags;
 }
 
