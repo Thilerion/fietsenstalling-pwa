@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { Tag, Item } from './utils/factory';
-import {loadFromStorage, persistPlugin} from './utils/localStorage';
+import { loadFromStorage, persistPlugin } from './utils/localStorage';
 
 Vue.use(Vuex);
 

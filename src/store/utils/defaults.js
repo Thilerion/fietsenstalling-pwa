@@ -69,8 +69,8 @@ function createTags(names, category, lastId) {
 
 baseTags.push(...createTags([1, 2, 3, 4, 5, 6, 7, 8], 'path', baseTags[baseTags.length - 1].id + 1));
 
-baseTags.push(...createTags(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'front', 'back'], 'column', baseTags[baseTags.length - 1].id + 1));
+baseTags.push(...createTags(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'voor', 'achter'], 'column', baseTags[baseTags.length - 1].id + 1));
 
-baseTags.push(...createTags(['top', 'bottom', 'left', 'right'], 'direction', baseTags[baseTags.length - 1].id + 1));
+baseTags.push(...createTags(['boven', 'onder', 'links', 'rechts'], 'direction', baseTags[baseTags.length - 1].id + 1));
 
 export { baseCategories, baseTags, baseItems };
