@@ -14,7 +14,7 @@
 			</v-list-tile>
 			<v-subheader v-if="pastItems">Eerder</v-subheader>
 			<v-divider v-if="pastItems" />
-			<template v-if="pastItems" v-for="(item, index) in pastItems">
+			<template v-for="(item, index) in pastItems">
 				<history-entry :key="index" :item="item" />
 			</template>
         </v-list>
