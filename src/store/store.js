@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { Tag, Item } from './utils/factory';
+import { Tag, HistoryItem } from './utils/factory';
 import { loadFromStorage, persistPlugin } from './utils/localStorage';
 
 Vue.use(Vuex);
@@ -48,14 +48,14 @@ const store = new Vuex.Store({
 			const tag = { name, color, category, id: getters.nextTagId };
 			commit('pushNewTag', tag);
 		},
-		addNewItem({ getters, commit }, {timestamp = Date.now().valueOf(), tagIds = []}) {
+		addNewItem({ getters, commit }, {timestamp = Date.now(), tagIds = []}) {
 			for (const tag of tagIds) {
 				if (!getters.tagIds.includes(tag)) {
 					throw new Error("This tag does not exist!");
 				}
 			}
 
-			commit('pushItem', new Item(tagIds, timestamp));
+			commit('pushItem', new HistoryItem(tagIds, timestamp));
 		},
 		deleteItem({ state, commit }, id) {
 			const idx = state.items.findIndex(item => item.id === id);

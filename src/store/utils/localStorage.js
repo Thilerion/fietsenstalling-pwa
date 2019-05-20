@@ -1,5 +1,5 @@
 import { baseCategories, baseTags, baseItems } from './defaults';
-import { Item } from './factory';
+import { HistoryItem } from './factory';
 
 function loadFromStorage() {
 	const tagCategories = localStorage.getItem('tagCategories');
@@ -11,7 +11,7 @@ function loadFromStorage() {
 		return { tagCategories: baseCategories, tags: baseTags, items: baseItems };
 	}
 
-	const parsedItems = JSON.parse(items).map(item => new Item(item.tagIds, item.timestamp));
+	const parsedItems = JSON.parse(items).map(item => new HistoryItem(item.tagIds, item.timestamp));
 
 	return {
 		tagCategories: JSON.parse(tagCategories),
